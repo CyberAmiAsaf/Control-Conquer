@@ -7,7 +7,7 @@ END_DATA_MESSAGE = "No More Data"
 def main():
     print "Client Searching"
     client_socket = socket.socket()
-    client_socket.connect(("192.168.30.31",2346))  # Client Startup
+    client_socket.connect(("192.168.30.31",2345))  # Client Startup
     print "Server Found"
     cv2.namedWindow("image",cv2.WND_PROP_FULLSCREEN)  # Put Window to Fullscreen mode
     cv2.setWindowProperty("image",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)  # Set Properties of window to fullscreen
@@ -23,7 +23,6 @@ def main():
             cv2.imshow("image" ,img)  # Show the image onscreen
             cv2.waitKey(1)  # Wait for Key 1 second, if not continue
         except:
-            exit()
             continue
 
 
