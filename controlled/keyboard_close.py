@@ -1,5 +1,5 @@
 __author__ = 'Cyber-01'
-import pyHook,pythoncom
+import pyHook, pythoncom
 import win32api
 
 
@@ -39,7 +39,7 @@ VK_CODE = {'Back': 0x08, 'Tab': 0x09, 'Clear/*': 0x0C, 'Return': 0x0D, 'shift': 
            'Oem_3': 0xC0, 'Oem_1': 0xBA, 'Oem_4': 0xDB, 'Oem_5': 0xDC, 'Oem_6': 0xDD, "Oem_7": 0xDE}
 
 def main():
-
+    pass
 
 if __name__ == '__main__':
     main()
