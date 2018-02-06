@@ -40,6 +40,7 @@ VK_CODE = {'Back': 0x08, 'Tab': 0x09, 'Clear/*': 0x0C, 'Return': 0x0D, 'shift': 
 
 def main():
     pass
+    a = ''
 
 if __name__ == '__main__':
     main()
