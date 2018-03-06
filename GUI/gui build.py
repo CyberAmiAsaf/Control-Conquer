@@ -1,47 +1,26 @@
 __author__ = 'Cyber-01'
 
 from Tkinter import *
+from graphics import *
+import time
+IMAGE_PATH = "C:\Vardython\Back.gif"
+
+def Image_Background(length,width,win):
+
+    length = length / 2
+    width = width / 2
+
+    b = Image(Point(length,width),IMAGE_PATH)
+    Image.draw(b,win)
 
 
-def donothing():
-   filewin = Toplevel(root)
-   button = Button(filewin, text="Do nothing button")
-   button.pack()
 
-root = Tk()
-root.title("Control & Conquer")
-root.iconbitmap("C:\Vardython\Logo.ico")
-menubar = Menu(root)
-filemenu = Menu(menubar, tearoff=0)
-filemenu.add_command(label="New", command=donothing)
-filemenu.add_command(label="Open", command=donothing)
-filemenu.add_command(label="Save", command=donothing)
-filemenu.add_command(label="Save as...", command=donothing)
-filemenu.add_command(label="Close", command=donothing)
+def main():
+    win = GraphWin("Command & Conquer",1100,800)
+    Image_Background(1100,800,win)
 
-filemenu.add_separator()
+    win.getMouse()
+    win.close()
 
-filemenu.add_command(label="Exit", command=root.quit)
-menubar.add_cascade(label="File", menu=filemenu)
-editmenu = Menu(menubar, tearoff=0)
-editmenu.add_command(label="Undo", command=donothing)
-
-editmenu.add_separator()
-
-editmenu.add_command(label="Cut", command=donothing)
-editmenu.add_command(label="Copy", command=donothing)
-editmenu.add_command(label="Paste", command=donothing)
-editmenu.add_command(label="Delete", command=donothing)
-editmenu.add_command(label="Select All", command=donothing)
-
-menubar.add_cascade(label="Edit", menu=editmenu)
-helpmenu = Menu(menubar, tearoff=0)
-helpmenu.add_command(label="Help Index", command=donothing)
-helpmenu.add_command(label="About...", command=donothing)
-menubar.add_cascade(label="Help", menu=helpmenu)
-
-root.config(menu=menubar)
-root.mainloop()
-
-"""if __name__ == '__main__':
-    main()"""
+if __name__ == '__main__':
+    main()
