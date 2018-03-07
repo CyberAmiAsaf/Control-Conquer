@@ -2,7 +2,7 @@ __author__ = 'Cyber-01'
 
 import pythoncom, pyHook
 import socket
-IP = "192.168.30.31"
+IP = "192.168.30.10"
 MOUSE_PORT = 3456
 
 
