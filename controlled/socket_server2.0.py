@@ -6,7 +6,7 @@ from PIL import ImageGrab
 def main():
     print "Server Running"
     server_socket = socket.socket()
-    server_socket.bind(('0.0.0.0',2345))  # Start the socket's server
+    server_socket.bind(('0.0.0.0',2346))  # Start the socket's server
     server_socket.listen(5)
     (new_socket, address) = server_socket.accept()
     print "Client Connected"
