@@ -3,7 +3,7 @@ __author__ = 'Cyber-01'
 import socket
 import win32con
 import win32api
-IP = "192.168.30.13"
+IP = "192.168.30.31"
 MOUSE_PORT = 3456
 
 
