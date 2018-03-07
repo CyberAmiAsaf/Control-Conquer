@@ -62,27 +62,14 @@ def main():
     while True:
         try:
             data = keyboard_socket.recvfrom(1024)
-            print data
             if data[0][0] == "*":
                 key_press(data)
             if data[0][0] == "^":
                 key_release(data)
 
 
-
-
         except:
             continue
-
-
-
-
-
-
-
-
-
-
 
 
 
