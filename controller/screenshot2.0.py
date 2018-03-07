@@ -4,7 +4,7 @@ __author__ = 'Vardi'
 import cv2
 import socket
 END_DATA_MESSAGE = "No More Data"
-IP = "192.168.30.31"
+IP = "192.168.30.10"
 def main():
     print "Client Searching"
     client_socket = socket.socket()
