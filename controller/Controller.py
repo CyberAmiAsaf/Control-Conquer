@@ -1,19 +1,14 @@
 __author__ = 'Cyber-01'
 
-
-
 import pythoncom, pyHook
 import socket
 import cv2
 import multiprocessing
 
-
 IP = "192.168.30.10"
 SCREEN_PORT = 2346
 MOUSE_PORT = 3456
 KEYBOARD_PORT = 5678
-
-
 
 
 def screen():
@@ -152,7 +147,7 @@ def main():
     mouse_process.start()
     process_list.append(mouse_process)
 
-    keyboard_process = multiprocessing.Process(target=keyboard())
+    keyboard_process = multiprocessing.Process(target=keyboard)
     keyboard_process.start()
     process_list.append(keyboard_process)
 
