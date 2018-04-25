@@ -8,17 +8,13 @@ import socket
 
 CONNECTION_PORT = 5555
 BACKGROUND_PATH = "C:\Vardython\Back.gif"
-HOMEPAGE_TEXT = "Hello Controller \r\n In Order to Start Your Controlling  "
+CONNECTION_TEXT = "Start Connection"
 
 def Image_Background(length, width, win):
     length = length / 2
     width = width / 2
     b = Image(Point(length, width), BACKGROUND_PATH)
     Image.draw(b, win)
-
-
-def Second_Page():
-     a=5
 
 
 
@@ -39,7 +35,9 @@ def main():
     ip_entry = Entry(Point(550,400),15)
     ip_entry.draw(win)
 
-
+    continue_text = Text(Point(550,550),"After Filling The Credentials , Press Anywhere to Continue")
+    continue_text.setTextColor("White")
+    continue_text.draw(win)
 
     password_text = Text(Point(365,450),"Enter Password for Connection:")
     password_text.setTextColor("White")
@@ -51,9 +49,9 @@ def main():
 
 
 
+
     ip = ip_entry.getText()
     password = password_entry.getText()
-
 
 
     #win.getMouse()
@@ -63,11 +61,12 @@ def main():
     #exitText = Text(Point(200,50), 'Click anywhere to quit')
     #exitText.draw(win)
     #win.getMouse()
-    continue_text = Text(Point(550,550),"Press Anywhere to Continue")
-    win.getMouse()
+
+    #win.getMouse()
     client_socket = socket.socket() # connecting between the controller and controlled
     client_socket.connect((ip,CONNECTION_PORT))  #
-
+    client_socket.send(CONNECTION_TEXT)
+    passw = client_socket.recv(1024)
 
 
     win.close()
