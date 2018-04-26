@@ -6,6 +6,8 @@ import time
 from PIL import ImageGrab
 import multiprocessing
 import win32api,win32con
+import sys
+
 IP = "192.168.30.31"
 SCREEN_PORT = 2346
 MOUSE_PORT = 3456
@@ -127,13 +129,18 @@ def key_release(data):
     key = int(key,16)
     win32api.keybd_event(key,0,win32con.KEYEVENTF_KEYUP,0)
 
-def keyboard():
+def keyboard(process_list):
     keyboard_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM) # Client Startup to udp
     keyboard_socket.bind(('0.0.0.0',KEYBOARD_PORT))
     while True:
         try:
             data = keyboard_socket.recvfrom(1024)
-            if data[0][0] == "*":
+            if data[0] == "Pause":
+                process_list[0].terminate()
+                process_list[1].terminate()
+                print "Good Bye!"
+                quit()
+            elif data[0][0] == "*":
                 key_press(data)
             if data[0][0] == "^":
                 key_release(data)
@@ -154,7 +161,7 @@ def main():
     mouse_process.start()
     process_list.append(mouse_process)
 
-    keyboard_process = multiprocessing.Process(target=keyboard)
+    keyboard_process = multiprocessing.Process(target=keyboard(process_list))
     keyboard_process.start()
     process_list.append(keyboard_process)
 
