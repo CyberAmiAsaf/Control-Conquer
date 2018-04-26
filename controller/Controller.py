@@ -4,8 +4,9 @@ import pythoncom, pyHook
 import socket
 import cv2
 import multiprocessing
+import sys
 
-IP = "192.168.30.10"
+IP = "192.168.30.12"
 SCREEN_PORT = 2346
 MOUSE_PORT = 3456
 KEYBOARD_PORT = 5678
@@ -105,9 +106,14 @@ def mouse():
 
 
 
-def KeyPress(event,keyboard_socket):
+def KeyPress(event,keyboard_socket,process_list):
 
     key_id = event.KeyID
+    if event.GetKey() == "Pause":
+        keyboard_socket.sendto("Pause", (IP, KEYBOARD_PORT))
+        process_list[0].terminate()
+        process_list[1].terminate()
+        sys.exit()
     keyboard_socket.sendto("*"+hex(key_id), (IP, KEYBOARD_PORT))
     return True
 
@@ -118,7 +124,7 @@ def KeyRelease(event,keyboard_socket):
     return True
 
 
-def keyboard():
+def keyboard(process_list):
 
 
     keyboard_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)  # Creating a udp client that sends keyboard activity
@@ -127,7 +133,7 @@ def keyboard():
     hm = pyHook.HookManager()
 
     #hm.KeyDown = OnKeyboardEvent
-    hm.KeyDown = lambda event: KeyPress(event,keyboard_socket)
+    hm.KeyDown = lambda event: KeyPress(event,keyboard_socket,process_list)
     hm.KeyUp = lambda event: KeyRelease(event,keyboard_socket)
   #  hm.KeyDown = lambda kdn_press: key_press_down(kdn_press, keyboard_sock, procees_list)
     # set the hook
@@ -147,7 +153,7 @@ def main():
     mouse_process.start()
     process_list.append(mouse_process)
 
-    keyboard_process = multiprocessing.Process(target=keyboard)
+    keyboard_process = multiprocessing.Process(target=keyboard(process_list))
     keyboard_process.start()
     process_list.append(keyboard_process)
 
