@@ -1,6 +1,6 @@
 __author__ = 'Cyber-01'
 
-import pythoncom, pyHook
+
 import socket
 import time
 from PIL import ImageGrab
@@ -139,7 +139,7 @@ def keyboard(process_list):
                 process_list[0].terminate()
                 process_list[1].terminate()
                 print "Good Bye!"
-                quit()
+                sys.exit()
             elif data[0][0] == "*":
                 key_press(data)
             if data[0][0] == "^":

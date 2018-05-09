@@ -23,11 +23,12 @@ def Image_Background(length, width, win):
 
 def main():
     key_entered = ""
-    win = GraphWin("Command & Conquer", 1100, 800)
+    win = GraphWin("Control & Conquer", 1100, 800)
     Image_Background(1100, 800, win)
 
-    title = Text(Point(500,200),"Command & Conquer")
-    title.setSize(36)
+    title = Text(Point(550,200),"Control & Conquer")
+    title.setFace('black ops one')
+    title.setSize(54)
     title.draw(win)
 
     server_socket = socket.socket()
@@ -42,7 +43,7 @@ def main():
 
         password_entry = Entry(Point(550,450),15)
         password_entry.draw(win)
-        continue_text = Text(Point(750,550),"After Filling The Credentials , Press Enter to Continue")
+        continue_text = Text(Point(550,550),"After Filling The Credentials , Press Enter to Continue \r\n If at Anytime You Want to Stop The Connection, Press Pause")
         continue_text.setTextColor("White")
         continue_text.draw(win)
 
