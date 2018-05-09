@@ -13,7 +13,6 @@ CONTROL_TEXT = "Start Controlling"
 IP_ERROR = "The IP that was given is invalid, Try Again"
 CONQUERED_ERROR = "The IP That Was Given Is Not Available For Conquering, Try Again"
 PASSWORD_ERROR = "No Password Has Been Given, Try Again"
-TITLE_PATH = "C:\Vardython\Title.gif"
 
 def Image_Background(length, width, win):
     length = length / 2
