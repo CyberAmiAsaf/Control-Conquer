@@ -6,12 +6,12 @@ from graphics import *
 import socket
 import Conquested
 
-CONTROLLER_IP = "192.168.30.28"
 CONNECTION_PORT = 5555
 BACKGROUND_PATH = "C:\Vardython\Back.gif"
 CONNECTION_TEXT = "Start Connection"
 CONTROL_TEXT = "Start Controlling"
-
+WINDOW_WIDTH = 1100
+WINDOW_LENGTH = 800
 
 def Image_Background(length, width, win):
     """
@@ -25,8 +25,8 @@ def Image_Background(length, width, win):
 
 def main():
     key_entered = ""
-    win = GraphWin("Control & Conquer", 1100, 800)
-    Image_Background(1100, 800, win)
+    win = GraphWin("Control & Conquer", WINDOW_WIDTH, WINDOW_LENGTH)
+    Image_Background(WINDOW_WIDTH, WINDOW_LENGTH, win)
 
     title = Text(Point(550,200),"Control & Conquer")
     title.setFace('black ops one') # Sets the title's font
