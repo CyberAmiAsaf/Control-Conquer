@@ -13,6 +13,9 @@ KEYBOARD_PORT = 5678
 
 
 def screen():
+    """
+    A function that receives screenshots from the conquested and shows them on the screen
+    """
     print "Client Searching"
     client_socket = socket.socket()
     client_socket.connect((IP,SCREEN_PORT))  # Client Startup
@@ -87,6 +90,9 @@ def Mouse_Move(event,mouse_socket):
 
 
 def mouse():
+    """
+    A function that records the mouse movement and sends them to the conquested
+    """
 
     mouse_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)  # Creating a udp client that sends mouse activity
 
@@ -107,7 +113,9 @@ def mouse():
 
 
 def KeyPress(event,keyboard_socket,process_list):
-
+    """
+    A function that acts when a keyboard button is pressed and sends it to the conquested
+    """
     key_id = event.KeyID
     if event.GetKey() == "Pause":
         keyboard_socket.sendto("Pause", (IP, KEYBOARD_PORT))
@@ -118,24 +126,23 @@ def KeyPress(event,keyboard_socket,process_list):
     return True
 
 def KeyRelease(event,keyboard_socket):
-
+    """
+    A function that acts when a keyboard button is released and sends it to the conquested
+    """
     key_id = event.KeyID
     keyboard_socket.sendto("^"+hex(key_id), (IP, KEYBOARD_PORT))
     return True
 
 
 def keyboard(process_list):
-
-
+    """
+    A function that records the keyboard's events and acts accordingly
+    """
     keyboard_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)  # Creating a udp client that sends keyboard activity
+    hm = pyHook.HookManager() # create a hook manager
 
-    # create a hook manager
-    hm = pyHook.HookManager()
-
-    #hm.KeyDown = OnKeyboardEvent
     hm.KeyDown = lambda event: KeyPress(event,keyboard_socket,process_list)
     hm.KeyUp = lambda event: KeyRelease(event,keyboard_socket)
-  #  hm.KeyDown = lambda kdn_press: key_press_down(kdn_press, keyboard_sock, procees_list)
     # set the hook
     hm.HookKeyboard()
     # wait forever
