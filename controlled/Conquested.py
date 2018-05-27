@@ -8,7 +8,6 @@ import multiprocessing
 import win32api,win32con
 import sys
 
-IP = "192.168.30.31"
 SCREEN_PORT = 2346
 MOUSE_PORT = 3456
 KEYBOARD_PORT = 5678
@@ -82,7 +81,7 @@ def mouse_wheel_movement(button, x, y):
 
 def mouse():
     """
-    A function that records every mouse movement and sends it to the controller
+    A function that receives the mouse movement from the controller and acts accordingly
     """
     mouse_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM) # Client Startup to udp
     mouse_socket.bind(('0.0.0.0',MOUSE_PORT))
