@@ -3,7 +3,6 @@ __author__ = 'Cyber-01'
 
 from Tkinter import *
 from graphics import *
-import time
 import socket
 import Conquested
 
@@ -15,6 +14,9 @@ CONTROL_TEXT = "Start Controlling"
 
 
 def Image_Background(length, width, win):
+    """
+    The function that changes the background of the window
+    """
     length = length / 2
     width = width / 2
     b = Image(Point(length, width), BACKGROUND_PATH)
@@ -27,7 +29,7 @@ def main():
     Image_Background(1100, 800, win)
 
     title = Text(Point(550,200),"Control & Conquer")
-    title.setFace('black ops one')
+    title.setFace('black ops one') # Sets the title's font
     title.setSize(54)
     title.draw(win)
 
@@ -36,31 +38,32 @@ def main():
     server_socket.listen(5)
     (controller_socket, address) = server_socket.accept()
     connection_text = controller_socket.recv(1024)
-    if connection_text == CONNECTION_TEXT:
+    if connection_text == CONNECTION_TEXT:  # If the data that was sent is a connection message for the controller
         password_text = Text(Point(365,450),"Enter Password for Connection:")
-        password_text.setTextColor("White")
+        password_text.setTextColor("White")  # The password input box
         password_text.draw(win)
 
         password_entry = Entry(Point(550,450),15)
         password_entry.draw(win)
         continue_text = Text(Point(550,550),"After Filling The Credentials , Press Enter to Continue \r\n If at Anytime You Want to Stop The Connection, Press Pause")
-        continue_text.setTextColor("White")
+        continue_text.setTextColor("White")  # The message at the bottom
         continue_text.draw(win)
 
         while key_entered != "Return":
-            key_entered = win.getKey()
+            key_entered = win.getKey()  # Don't read the text in the password input box until the conquested presses Enter
         password = password_entry.getText()
 
-        #win.getMouse()
         controller_socket.send(password)
 
         control_text = controller_socket.recv(1024)
         print control_text
         if control_text == CONTROL_TEXT:
+            win.close()
             server_socket.close()
             Conquested.main()
 
-        win.close()
+
+
 
 
 

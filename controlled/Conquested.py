@@ -18,6 +18,9 @@ SCREENSHOT_NAME = "scrn.png"
 
 
 def screen():
+    """
+    A function that takes screenshots throughout the connection and sends them to the controller
+    """
     print "Server Running"
     server_socket = socket.socket()
     server_socket.bind(('0.0.0.0',SCREEN_PORT))  # Start the socket's server
@@ -78,6 +81,9 @@ def mouse_wheel_movement(button, x, y):
 
 
 def mouse():
+    """
+    A function that records every mouse movement and sends it to the controller
+    """
     mouse_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM) # Client Startup to udp
     mouse_socket.bind(('0.0.0.0',MOUSE_PORT))
     while True:
@@ -93,43 +99,52 @@ def mouse():
             if len(data) == 2:
                 if data[1] == "L":
                     if data[0] == "*":
-                        mouse_click(data[1],x,y)
+                        mouse_click(data[1],x,y)  # Left mouse Click
                     else:
-                        mouse_release(data[1],x,y)
+                        mouse_release(data[1],x,y) # Left mouse Release
 
                 if data[1] == "R":
                     if data[0] == "*":
-                        mouse_click(data[1],x,y)
+                        mouse_click(data[1],x,y) # Right mouse Click
                     else:
-                        mouse_release(data[1],x,y)
+                        mouse_release(data[1],x,y) # Right mouse Release
 
                 if data[1] == "M":
                     if data[0] == "*":
-                        mouse_click(data[1],x,y)
+                        mouse_click(data[1],x,y) # Middle mouse Click
                     else:
-                        mouse_release(data[1],x,y)
+                        mouse_release(data[1],x,y) # Middle mouse Release
 
                 if data[1] == "1":
-                    mouse_wheel_movement(data, x, y)
+                    mouse_wheel_movement(data, x, y)  # Mouse wheel movement
             if len(data) == 1:
-                mouse_wheel_movement(data, x, y)
+                mouse_wheel_movement(data, x, y) # Mouse wheel movement
 
         except:
             pass
 
 
 def key_press(data):
+    """
+    A function that receives the key that the controller sent and presses them
+    """
     key = data[0][1:]
-    key = int(key,16)
+    key = int(key,16)  # Convert hex string to int
     win32api.keybd_event(key,0,0,0)
 
 
 def key_release(data):
+    """
+    A function that receives the key that the controller sent and releases them
+    """
     key = data[0][1:]
-    key = int(key,16)
+    key = int(key,16) # Convert hex string to int
     win32api.keybd_event(key,0,win32con.KEYEVENTF_KEYUP,0)
 
 def keyboard(process_list):
+    """
+    A function that receives the controller's keyboard events and acts accordingly
+    """
     keyboard_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM) # Client Startup to udp
     keyboard_socket.bind(('0.0.0.0',KEYBOARD_PORT))
     while True:
@@ -138,7 +153,6 @@ def keyboard(process_list):
             if data[0] == "Pause":
                 process_list[0].terminate()
                 process_list[1].terminate()
-                print "Good Bye!"
                 sys.exit()
             elif data[0][0] == "*":
                 key_press(data)
