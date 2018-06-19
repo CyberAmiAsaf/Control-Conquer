@@ -6,7 +6,7 @@ import cv2
 import multiprocessing
 import sys
 
-IP = "192.168.30.12"
+IP = "192.168.30.19"
 SCREEN_PORT = 2346
 MOUSE_PORT = 3456
 KEYBOARD_PORT = 5678

@@ -4,11 +4,12 @@ from Tkinter import *
 from graphics import *
 import time
 import socket
-
+import Controller
 
 CONNECTION_PORT = 5555
 BACKGROUND_PATH = "C:\Vardython\Back.gif"
 CONNECTION_TEXT = "Start Connection"
+CONTROL_TEXT = "Start Controlling"
 
 def Image_Background(length, width, win):
     length = length / 2
@@ -66,7 +67,12 @@ def main():
     client_socket = socket.socket() # connecting between the controller and controlled
     client_socket.connect((ip,CONNECTION_PORT))  #
     client_socket.send(CONNECTION_TEXT)
-    passw = client_socket.recv(1024)
+    password_check = client_socket.recv(1024)  # The password that the conquested sends
+    if password_check == password:
+        client_socket.send(CONTROL_TEXT)
+        client_socket.close()
+        Controller.main()
+
 
 
     win.close()
