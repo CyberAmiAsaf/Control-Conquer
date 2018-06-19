@@ -7,7 +7,7 @@ import socket
 import Conquested
 
 CONNECTION_PORT = 5555
-BACKGROUND_PATH = "C:\Vardython\Back.gif"
+BACKGROUND_PATH = "C:\Vardython\Background.gif"
 CONNECTION_TEXT = "Start Connection"
 CONTROL_TEXT = "Start Controlling"
 WINDOW_WIDTH = 1100
