@@ -31,7 +31,7 @@ def screen(BOOLEAN):
             img_file = open("fullscreen.png",'wb')
             img_file.write(data)  # Write data to new image file
             img_file.close()
-            if BOOLEAN.value == False:
+            if BOOLEAN.value == False:  # If the connection is not paused
                 cv2.namedWindow("image",cv2.WND_PROP_FULLSCREEN)  # Put Window to Fullscreen mode
                 cv2.setWindowProperty("image",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)  # Set Properties of window to fullscreen
                 img = cv2.imread("fullscreen.png")  # Open image with cv2
@@ -50,7 +50,7 @@ def Right_Click(event,mouse_socket,BOOLEAN):
     """
     A function that starts when there is a right click event and sends the controlled computer that same event
     """
-    if BOOLEAN.value == False:
+    if BOOLEAN.value == False:  # If the connection is not paused
         mouse_socket.sendto('*R',(IP, MOUSE_PORT))
     return True
 
@@ -59,7 +59,7 @@ def Right_Release(event,mouse_socket,BOOLEAN):
     """
     A function that starts when there is a right click release event and sends the controlled computer that same event
     """
-    if BOOLEAN.value == False:
+    if BOOLEAN.value == False:  # If the connection is not paused
         mouse_socket.sendto('^R',(IP, MOUSE_PORT))
     return True
 
@@ -69,7 +69,7 @@ def Left_Click(event,mouse_socket,BOOLEAN):
     """
     A function that starts when there is a left click event and sends the controlled computer that same event
     """
-    if BOOLEAN.value == False:
+    if BOOLEAN.value == False:  # If the connection is not paused
         mouse_socket.sendto('*L',(IP, MOUSE_PORT))
     return True
 
@@ -78,7 +78,7 @@ def Left_Release(event,mouse_socket,BOOLEAN):
     """
     A function that starts when there is a left click release event and sends the controlled computer that same event
     """
-    if BOOLEAN.value == False:
+    if BOOLEAN.value == False:  # If the connection is not paused
         mouse_socket.sendto('^L',(IP, MOUSE_PORT))
     return True
 
@@ -87,7 +87,7 @@ def Mouse_Wheel(event,mouse_socket,BOOLEAN):
     """
     A function that starts when there is a wheel movement event and sends the controlled computer that same event
     """
-    if BOOLEAN.value == False:
+    if BOOLEAN.value == False:  # If the connection is not paused
         mouse_socket.sendto(str(event.Wheel),(IP, MOUSE_PORT))
     return True
 
@@ -97,7 +97,7 @@ def Mouse_Move(event,mouse_socket,BOOLEAN):
     """
     A function that starts when there is a mouse movement event and sends the controlled computer that same event
     """
-    if BOOLEAN.value == False:
+    if BOOLEAN.value == False:  # If the connection is not paused
         mouse_socket.sendto(str(event.Position),(IP, MOUSE_PORT))
     return True
 
@@ -143,7 +143,7 @@ def KeyPress(event,keyboard_socket,mouse_process,screen_process, BOOLEAN):
         print "bbb"
         #keyboard_socket.sendto("End", (IP, KEYBOARD_PORT))
         return True
-    if BOOLEAN.value == False:
+    if BOOLEAN.value == False:  # If the connection is not paused
         keyboard_socket.sendto("*"+hex(key_id), (IP, KEYBOARD_PORT))
     return True
 
@@ -152,7 +152,7 @@ def KeyRelease(event,keyboard_socket,BOOLEAN):
     A function that acts when a keyboard button is released and sends it to the conquested
     """
     key_id = event.KeyID
-    if BOOLEAN.value == False:
+    if BOOLEAN.value == False:  # If the connection is not paused
         keyboard_socket.sendto("^"+hex(key_id), (IP, KEYBOARD_PORT))
     return True
 
@@ -185,11 +185,7 @@ def main():
     process_list.append(mouse_process)
 
     keyboard(mouse_process,screen_process,BOOLEAN)
-    """
-    keyboard_process = multiprocessing.Process(target=keyboard, args=(mouse_process,screen_process,BOOLEAN, ))
-    keyboard_process.start()
-    process_list.append(keyboard_process)
-    """
+
 
 
 if __name__ == '__main__':
