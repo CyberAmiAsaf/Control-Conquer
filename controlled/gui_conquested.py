@@ -45,7 +45,7 @@ def main():
 
         password_entry = Entry(Point(550,450),15)
         password_entry.draw(win)
-        continue_text = Text(Point(550,550),"After Filling The Credentials , Press Enter to Continue \r\n If at Anytime You Want to Stop The Connection, Press Pause")
+        continue_text = Text(Point(550,550),"After Filling The Credentials , Press Enter to Continue")
         continue_text.setTextColor("White")  # The message at the bottom
         continue_text.draw(win)
 
