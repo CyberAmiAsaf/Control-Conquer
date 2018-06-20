@@ -53,9 +53,13 @@ def Input_Creator(win):
     ip_entry = Entry(Point(550,400),15)
     ip_entry.draw(win)
 
-    continue_text = Text(Point(550,550),"After Filling The Credentials , Press Enter to Continue \r\n If at Anytime You Want to Stop The Connection, Press Pause")
-    continue_text.setTextColor("White")
-    continue_text.draw(win)
+    exit_text = Text(Point(550,550),"After Filling The Credentials , Press Enter to Continue \r\n If at Anytime You Want to Stop The Connection, Press Pause")
+    exit_text.setTextColor("White")
+    exit_text.draw(win)
+
+    pause_text = Text(Point(550,605),"If at Anytime During the Communication, You Would Want to Switch Between the Conquested's Screen and Your Own and Back, Press End")
+    pause_text.setTextColor("White")
+    pause_text.draw(win)
 
     password_text = Text(Point(365,450),"Enter Password for Connection:") # password input box
     password_text.setTextColor("White")
